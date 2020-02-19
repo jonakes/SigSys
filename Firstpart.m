@@ -58,5 +58,6 @@ figure;
      figure
      x=sin(w(n)*t);
      lsim(G,x,t) 
-     
+     evalfr(G,w(n))
+     axis([6*pi/w(n) 10*pi/w(n) -5 5]);
  end

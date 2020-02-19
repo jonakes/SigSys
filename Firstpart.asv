@@ -53,10 +53,11 @@ figure;
  den = conv([1, 1],[1, 1, 9]);
  G = tf(num,den);
  t=0:Ts:Tmax;
- w=[1 3 200
+ w=[1 3 5]*360/(2*pi);
  for n=1:1:3
      figure
      x=sin(w(n)*t);
-     lsim(G,x,t)
-     hold on
+     lsim(G,x,t) 
+     evalfr(G,j*w(n))
+     axis([3*w(n) 5*w(n) -5 5]);
  end
