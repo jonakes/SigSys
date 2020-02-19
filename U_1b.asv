@@ -1,0 +1,20 @@
+clc
+clf
+
+T=1;
+w=2*pi/T;
+M=200;
+t=T*(0:M-1)/M;
+y=sin(w*t);
+plot(t,y);
+
+a_0=0;
+a_k=0;
+atot=a_0;
+
+b_tot=0;
+for k=1:2:50
+    b_tot=b_tot+4/(pi*k);
+end
+hold on;
+plot(t,
