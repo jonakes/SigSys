@@ -22,12 +22,12 @@ w=2*pi/T;
  %%
  clc
  num = conv([1, 0.1],[1, 10]);
-den = conv([1, 1],[1, 1, 9]);
+ den = conv([1, 1],[1, 1, 9]);
  G = tf(num,den);
  figure
  pzmap(G)
  grid on
-figure;
+ figure;
  bode(G)
  grid on
  %%
@@ -58,6 +58,8 @@ figure;
      figure
      x=sin(w(n)*t);
      lsim(G,x,t) 
-     evalfr(G,w(n))
+     a=evalfr(G,j*w(n));
      axis([6*pi/w(n) 10*pi/w(n) -5 5]);
+     amplitud=abs(a)
+     vinkel=rad2deg(angle(a))
  end
