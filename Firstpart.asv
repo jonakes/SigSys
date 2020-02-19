@@ -24,8 +24,7 @@ w=2*pi/T;
  num = conv([1, 0.1],[1, 10]);
 den = conv([1, 1],[1, 1, 9]);
  G = tf(num,den);
- pzmap(G)
- grid on
-figure;
+subplo
+ hold on
  bode(G)
  grid on
