@@ -24,8 +24,39 @@ w=2*pi/T;
  num = conv([1, 0.1],[1, 10]);
 den = conv([1, 1],[1, 1, 9]);
  G = tf(num,den);
+ figure
  pzmap(G)
  grid on
 figure;
  bode(G)
  grid on
+ %%
+ clc
+ Fs=100;
+ Ts=1/Fs;
+ N=2^13;
+ Tmax=(N-1)*Ts;
+ t=0:Ts:Tmax;
+ for n=1:1:3
+     figure;
+ x=sin(w(n)*t);
+ plot(t,x);
+ hold on
+ end
+ %%
+ clc
+ Fs=100;
+ Ts=1/Fs;
+ N=2^13;
+ Tmax=(N-1)*Ts;
+ num = conv([1, 0.1],[1, 10]);
+ den = conv([1, 1],[1, 1, 9]);
+ G = tf(num,den);
+ t=0:Ts:Tmax;
+ w=[1 3 5];
+ for n=1:1:3
+     figure
+     x=sin(w(n)*t);
+     lsim(G,x,t) 
+     
+ end
