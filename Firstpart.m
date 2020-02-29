@@ -95,7 +95,7 @@ t=0:Ts:Tmax;
 %dvs 14+13*2*n eftersom wk*2 = peak.
  b_t1=4/pi - abs(X(14))*2/N
  b_t3=4/(pi*3) - abs(X(40))*2/N
- b_t5=4/(pi*5 - abs(X(66))*2/N %N?r k st?mmer ?verens s? att w_s ungef?r = w0
+ b_t5=4/(pi*5) - abs(X(66))*2/N %N?r k st?mmer ?verens s? att w_s ungef?r = w0
  %satter vi in sinus far vi att e delen blir 1 och da ar summan 1*N*B/2
  %=X[k] GOR EN TABELL.
 
