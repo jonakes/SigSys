@@ -30,6 +30,15 @@ w=2*pi/T;
  figure;
  bode(G)
  grid on
+ figure
+ semilogx([10^-3 0.1],[-20 -20])
+ hold on
+ semilogx([0.1 1],[-20 0])
+ semilogx([1 3],[0 0])
+ semilogx([3 3],[0 10])
+ semilogx([3 10],[0 -20])
+ semilogx([10 100],[-20 -35])
+ axis([10^-3 100 -35 15])
  %%
  clc
  Fs=100;
@@ -48,7 +57,6 @@ w=2*pi/T;
  Fs=100;
  Ts=1/Fs;
  N=2^13;
- w=[1 3 5];
  Tmax=(N-1)*Ts;
  num = conv([1, 0.1],[1, 10]);
  den = conv([1, 1],[1, 1, 9]);
