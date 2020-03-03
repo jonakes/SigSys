@@ -93,9 +93,31 @@ t=0:Ts:Tmax;
 %diskret signal som vi g?r FFT p?. Peak avtar varje 13e w_k eftersom k=13
 %ger mest likhet med fyrkantssignalen.
 %dvs 14+13*2*n eftersom wk*2 = peak.
- b_t1=4/pi - abs(X(14))*2/N
- b_t3=4/(pi*3) - abs(X(40))*2/N
- b_t5=4/(pi*5) - abs(X(66))*2/N %N?r k st?mmer ?verens s? att w_s ungef?r = w0
+ b_t1=4/pi;
+ b_t3=4/(pi*3);
+  b_t5=4/(pi*5);
+ b_t1 - abs(X(14))*2/N;
+ b_t3 - abs(X(40))*2/N;
+ b_t5 - abs(X(66))*2/N; %N?r k st?mmer ?verens s? att w_s ungef?r = w0
  %satter vi in sinus far vi att e delen blir 1 och da ar summan 1*N*B/2
  %=X[k] GOR EN TABELL.
 
+% Uppg e
+num = conv([1, 0.1],[1, 10]);
+ den = conv([1, 1],[1, 1, 9]);
+ G = tf(num,den);
+ y=lsim(G,x,t);
+
+plot(w_k,y);
+s = evalfr(G,j);
+thet = angle(s);
+a =  sin(thet)
+ g1= abs(evalfr(G,j))*4/pi
+ g3= abs(evalfr(G,3*j))*4/(pi*3)
+ g5= abs(evalfr(G,5*j))*4/(pi*5)
+ yfft = fft(y);
+ plot(w_k,2*abs(yfft)/N);
+
+%y(1) = 0 so A_0 is zero.
+
+ 
