@@ -15,15 +15,13 @@ w=[1 5 7 9];
 num=[1 0];
 
 for n=1:length(w)
-    num= conv(num,[1 0 w(n)^2]);
+    num= conv(num,[1 w(n)]);
 end
 den=[1 w04];
-for n=1:9
+for n=1:6
     den=conv(den,[1 w04]);
 end
-for n=1:4
-    den=conv(den,[1 w09]);
-end
+den = conv(conv(den,[1 w09]), [1 w09]);
 sys=tf(num,den);
 H0=1/abs(evalfr(sys,3j));
 num=H0*num;
