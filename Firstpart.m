@@ -94,7 +94,11 @@ w=2*pi/T;
  Fs=100;
  N=2^13;
   w=[1 3 5];
+<<<<<<< HEAD
  Ts=1/Fs; 
+=======
+  Ts=1/Fs;
+>>>>>>> 688583e4f92646aa78371ae76b332f3ebaa8c397
  Tmax=(N-1)*Ts;
 
 t=0:Ts:Tmax;
@@ -136,7 +140,11 @@ a =  sin(thet)
  g3= abs(evalfr(G,3*j))*4/(pi*3)
  g5= abs(evalfr(G,5*j))*4/(pi*5)
  yfft = fft(y);
- plot(w_k,2*abs(yfft)/N);
+ plot(w_k,2*abs(yfft)/N)
 
 %y(1) = 0 so A_0 is zero.
-
+%plot(w_k, abs(yfft))
+%figure 
+%plot(w_k, abs(X))
+%Bodefiltret har filtrerat ner h?ga frekvenser och s?nkt 3e, vilket st?mmer
+%med bodediagrammet.
