@@ -150,3 +150,70 @@ plot(w_k, abs(X))
 hold off
 %Bodefiltret har filtrerat ner h?ga frekvenser och s?nkt 3e, vilket st?mmer
 %med bodediagrammet.
+
+%%
+%% 4
+clc
+close all
+w0=4;
+Fs=100;
+N=2^13;
+Ts=1/Fs; 
+Tmax=(N-1)*Ts;
+t=0:Ts:Tmax;
+x = square(t);
+
+%Skapar signalen y från 3.3
+numG = conv([1, 0.1],[1, 10]);
+denG = conv([1, 1],[1, 1, 9]);
+G = tf(numG,denG);
+y=lsim(G,x,t);
+w=[1 5 7 9];
+
+%Skapar täljarpolynomet, börjar med S^2
+num=[1 0];
+for n=1:length(w)
+    %Notchar läggs till för udda frekvenser (s^2+w^2), w=(1 5 7 9)
+    num= conv(num,[1 0 w(n)^2]);
+end
+%Skapar nämnarpolynomet
+den=[1 w0];
+for n=1:11
+    %Poler läggs till för (s+4)
+    den=conv(den,[1 w0]);
+end
+
+%Systemet skapas
+sys=tf(num,den);
+%Faktor för att "höja" överföringsfunktionen beräknas
+H0=1/abs(evalfr(sys,3j));
+%Överföringsfunktionen höj upp till rätt förstärkning för w=3
+num=H0*num;
+sys=tf(num,den);
+%Filtrerar signalerna
+xx = lsim(sys,x,t);
+yy = lsim(sys,y,t);
+
+figure    
+bode(sys)
+hold on
+
+figure
+pzmap(sys)
+grid on
+
+k = 0:1:N-1;
+w_k =2*pi*Fs*k/N;
+figure
+%Plottar signalerna i frekvensplanet
+plot(w_k,abs(fft(yy)));
+hold on
+plot(w_k,abs(fft(xx)));
+axis([0 40 0 5500])
+
+figure
+plot(t,yy);
+hold on
+plot(t,xx);
+axis([4*2*pi/3 8*2*pi/3 -1.5 1.5])
+ 
