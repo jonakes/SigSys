@@ -127,9 +127,8 @@ s = evalfr(G,j);
  greal3 = 2*abs(yfft(40))/N %k=26=2w0, even so zero. k=39 = 3w0 so odd.
  greal5 = 2*abs(yfft(66))/N %Same as before, add 26 for next odd number.
 %y(1) = 0 so A_0 is zero.
-hold on
-plot(w_k, abs(yfft))
+h
+plot(w_k, 2*abs(yfft)/N) 
 plot(w_k, abs(X))
-hold off
 %Bodefiltret har filtrerat ner h?ga frekvenser och s?nkt 3e, vilket st?mmer
 %med bodediagrammet.
